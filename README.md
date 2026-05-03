@@ -5,6 +5,9 @@
 
 A real-time web application where users can interact with a massive grid of checkboxes (1,000,000 cells) simultaneously. Built using WebSockets, Redis, and a custom OIDC authentication flow.
 
+live link -  https://million-checkbox-project.vercel.app
+video link - https://x.com/hiteshdhayall/status/2051019272554688962?s=20
+
 ---
 
 ## 🌐 Overview
