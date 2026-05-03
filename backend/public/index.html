@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>百万のチェックボックス · HYAKUMAN NO CHECKBOX</title>
+  <meta name="description" content="Real-time collaborative million checkbox grid — 百万のチェックボックス">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header id="navbar">
+    <div class="nav-left">
+      <div class="title-block">
+        <span class="title-kanji">百万のチェックボックス</span>
+        <span class="title-romaji">HYAKUMAN NO CHECKBOX</span>
+      </div>
+      <div class="nav-divider"></div>
+      <span class="title-en">MILLION CHECKBOXES</span>
+    </div>
+
+    <div class="nav-right">
+      <div class="stat-pill" id="pill-checked">
+        <span class="pulse-dot"></span>
+        <span id="checked-count">0</span>&nbsp;checked
+      </div>
+      <div class="stat-pill" id="pill-online">
+        <span class="pulse-dot"></span>
+        <span id="user-count">0</span>&nbsp;online
+      </div>
+      <div class="conn-badge" id="conn-badge">
+        <span class="conn-dot" id="conn-dot"></span>
+        <span id="conn-label">CONNECTING</span>
+      </div>
+      <div id="auth-section"><!-- JS rendered --></div>
+    </div>
+  </header>
+
+  <!-- Sub-bar -->
+  <div id="subbar">
+    <span class="subbar-left">チェックボックス · GRID · 1,000,000 CELLS</span>
+    <div class="ticker-wrap" id="ticker-wrap">
+      <span class="ticker-label">ACTIVITY ·</span>
+      <div class="ticker-entries" id="ticker-entries">
+        <span class="ticker-entry muted">— awaiting events —</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <main id="grid-outer">
+    <div id="loading-overlay">
+      <div class="loader-block">
+        <div class="loader-bar"><div class="loader-fill" id="loader-fill"></div></div>
+        <span class="loader-text" id="loader-text">読み込み中… LOADING</span>
+      </div>
+    </div>
+    <div id="grid-scroll">
+      <div id="grid-spacer"><!-- height set by JS --></div>
+      <div id="grid-rows"><!-- virtualised rows injected here --></div>
+    </div>
+  </main>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Bottom Status Bar -->
+  <footer id="statusbar">
+    <div class="status-left">
+      <span class="sys-badge" id="badge-ws"><span class="sys-dot"></span>WS</span>
+      <span class="sys-badge" id="badge-redis"><span class="sys-dot"></span>REDIS</span>
+      <span class="sys-badge" id="badge-oidc"><span class="sys-dot"></span>OIDC</span>
+    </div>
+    <div class="status-center">
+      <span id="progress-label">0 / 1,000,000 checked (0.00%)</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+    </div>
+    <div class="status-right">
+      PING · <span id="ping-val">—</span>ms
+    </div>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>

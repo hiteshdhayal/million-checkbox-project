@@ -1,0 +1,68 @@
+.grid-outer {
+  padding: 16px 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.grid-container {
+  border: 2px solid var(--border-dark);
+  border-radius: 10px;
+  height: 52vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--surface);
+  position: relative;
+}
+
+/* Custom scrollbar */
+.grid-container::-webkit-scrollbar       { width: 6px; }
+.grid-container::-webkit-scrollbar-track { background: var(--bg); }
+.grid-container::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.grid-container::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+.grid-scroller {
+  padding: 8px;
+}
+
+.grid-row {
+  height: 88px; /* 80px + 8px gap — set explicitly for clarity */
+}
+
+/* Loading state */
+.grid-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: var(--surface);
+  z-index: 10;
+  font-family: var(--text-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.loading-bar {
+  width: 160px;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loading-fill {
+  height: 100%;
+  width: 60%;
+  background: var(--red);
+  border-radius: 2px;
+  animation: loadingShimmer 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes loadingShimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(200%); }
+}

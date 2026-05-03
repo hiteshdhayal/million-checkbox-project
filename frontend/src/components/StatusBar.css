@@ -1,0 +1,61 @@
+.statusbar {
+  padding: 0 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.statusbar-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.statusbar-label {
+  font-family: var(--text-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.statusbar-count {
+  font-family: var(--text-mono);
+  font-size: 14px;
+  color: var(--red);
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.statusbar-hr {
+  border: none;
+  border-top: 1px solid var(--border-dark);
+  margin: 0;
+}
+
+.activity-feed {
+  display: flex;
+  gap: 16px;
+  padding: 6px 0;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+.activity-entry {
+  font-size: 10px;
+  font-family: var(--text-mono);
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  animation: fadeInAct 0.3s ease;
+  flex-shrink: 0;
+}
+
+.act-on  { color: var(--red); }
+.act-off { color: var(--text-muted); }
+
+@keyframes fadeInAct {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

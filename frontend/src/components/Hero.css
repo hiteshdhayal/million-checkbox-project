@@ -1,0 +1,227 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 64px 24px 48px;
+  overflow: hidden;
+  min-height: 360px;
+}
+
+/* ── Rising sun ───────────────────────────────────────────────────────────── */
+.hero-sun-wrap {
+  position: absolute;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 480px;
+  height: 480px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-rays {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    rgba(255, 42, 0, 0.12) 0deg 10deg,
+    transparent 10deg 20deg
+  );
+  transform: scale(1.6);
+}
+
+.hero-sun {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 42, 0, 0.2) 0%, rgba(255, 42, 0, 0.08) 60%, transparent 72%);
+}
+
+/* ── Auth pill ─────────────────────────────────────────────────────────────── */
+.hero-auth {
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  z-index: 10;
+}
+
+.auth-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 4px 12px 4px 4px;
+}
+
+.avatar-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--red-pale);
+  border: 1px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--red);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.auth-name {
+  font-size: 11px;
+  color: var(--text);
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auth-logout {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+.auth-logout:hover { color: var(--red); }
+
+.auth-login-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  background: var(--border-dark);
+  color: #fff;
+  border-radius: 24px;
+  font-family: var(--text-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  transition: opacity 0.2s;
+}
+.auth-login-btn:hover { opacity: 0.8; }
+
+/* ── Hero content ─────────────────────────────────────────────────────────── */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border: 1px solid var(--border-dark);
+  border-radius: 20px;
+  font-family: var(--text-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--text);
+  background: var(--surface);
+}
+
+.hero-pill-dot {
+  color: var(--red);
+  font-size: 8px;
+}
+
+.hero-title {
+  font-family: var(--text-serif);
+  font-size: clamp(56px, 10vw, 96px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.hero-sub {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--text-muted);
+}
+
+.hero-desc {
+  font-family: var(--text-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+  max-width: 380px;
+}
+
+/* ── Status pills ─────────────────────────────────────────────────────────── */
+.hero-status-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.ws-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  background: var(--surface);
+}
+
+.ws-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: background 0.3s;
+}
+
+.ws-badge--connected   .ws-dot { background: #4eca8b; }
+.ws-badge--connected           { color: #4eca8b; }
+.ws-badge--connecting  .ws-dot { background: #e8b84b; animation: pulse 1.2s ease-in-out infinite; }
+.ws-badge--disconnected .ws-dot { background: var(--red); }
+.ws-badge--disconnected         { color: var(--red); }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.latency-badge {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+/* ── Bottom fade ──────────────────────────────────────────────────────────── */
+.hero-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+  z-index: 2;
+}
