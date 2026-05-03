@@ -1,1 +1,1 @@
-export const BACKEND_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+export const BACKEND_URL = "https://million-checkbox-project-production.up.railway.app";
