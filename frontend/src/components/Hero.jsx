@@ -24,7 +24,7 @@ export default function Hero({ user, wsStatus, latency }) {
             <a href={`${BACKEND_URL}/auth/logout`} className="auth-logout">ログアウト</a>
           </div>
         ) : (
-          <a href={`${BACKEND_URL}/auth/google`} className="auth-login-btn">
+          <a href={`${BACKEND_URL}/auth/login`} className="auth-login-btn">
             ログイン&nbsp;LOGIN
           </a>
         )}
