@@ -1,4 +1,5 @@
 import React from 'react';
+import { BACKEND_URL } from '../config.js';
 import './Hero.css';
 
 export default function Hero({ user, wsStatus, latency }) {
@@ -20,10 +21,10 @@ export default function Hero({ user, wsStatus, latency }) {
                 : (user.name || user.email || '?')[0].toUpperCase()}
             </div>
             <span className="auth-name">{user.name || user.email}</span>
-            <a href="/auth/logout" className="auth-logout">ログアウト</a>
+            <a href={`${BACKEND_URL}/auth/logout`} className="auth-logout">ログアウト</a>
           </div>
         ) : (
-          <a href="/auth/login" className="auth-login-btn">
+          <a href={`${BACKEND_URL}/auth/google`} className="auth-login-btn">
             ログイン&nbsp;LOGIN
           </a>
         )}

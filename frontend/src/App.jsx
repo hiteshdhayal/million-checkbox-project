@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
+import { BACKEND_URL } from './config.js';
 import Hero       from './components/Hero.jsx';
 import StatusBar  from './components/StatusBar.jsx';
 import Grid       from './components/Grid.jsx';
@@ -51,7 +52,7 @@ export default function App() {
 
   // ── Auth ──────────────────────────────────────────────────────────────────
   useEffect(() => {
-    fetch('/api/me')
+    fetch(`${BACKEND_URL}/api/me`)
       .then(r => r.ok ? r.json() : null)
       .then(u => setUser(u))
       .catch(() => setUser(null));
@@ -59,7 +60,7 @@ export default function App() {
 
   // ── Fetch initial binary state ────────────────────────────────────────────
   useEffect(() => {
-    fetch('/api/state')
+    fetch(`${BACKEND_URL}/api/state`)
       .then(r => r.arrayBuffer())
       .then(buf => {
         applyFullState(new Uint8Array(buf));
