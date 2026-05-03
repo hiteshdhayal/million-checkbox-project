@@ -3,14 +3,8 @@ const crypto = require('crypto');
 const { v4: uuidv4 } = require('uuid');
 const { commandClient } = require('./redis');
 
-let oidcConfig = null;
-
-async function getOidcConfig() {
-  if (oidcConfig) return oidcConfig;
-  const response = await fetch('https://accounts.google.com/.well-known/openid-configuration');
-  oidcConfig = await response.json();
-  return oidcConfig;
-}
+const GOOGLE_AUTH_ENDPOINT  = 'https://accounts.google.com/o/oauth2/v2/auth';
+const GOOGLE_TOKEN_ENDPOINT = 'https://oauth2.googleapis.com/token';
 
 function generateSignature(cookieValue, secret) {
   return crypto.createHmac('sha256', secret).update(cookieValue).digest('hex');
@@ -73,7 +67,6 @@ const authRoutes = require('express').Router();
 
 authRoutes.get('/login', async (req, res) => {
   try {
-    const config = await getOidcConfig();
     const state = crypto.randomBytes(16).toString('hex');
     
     await commandClient.set(`oidc:state:${state}`, '1', 'EX', 300);
@@ -86,7 +79,7 @@ authRoutes.get('/login', async (req, res) => {
       state: state
     });
 
-    res.redirect(`${config.authorization_endpoint}?${params.toString()}`);
+    res.redirect(`${GOOGLE_AUTH_ENDPOINT}?${params.toString()}`);
   } catch (error) {
     console.error('Login error:', error);
     res.status(500).send('Authentication setup failed');
@@ -111,9 +104,7 @@ authRoutes.get('/callback', async (req, res) => {
     }
     await commandClient.del(`oidc:state:${state}`);
 
-    const config = await getOidcConfig();
-
-    const tokenResponse = await fetch(config.token_endpoint, {
+    const tokenResponse = await fetch(GOOGLE_TOKEN_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({
