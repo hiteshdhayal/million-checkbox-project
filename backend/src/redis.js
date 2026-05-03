@@ -1,7 +1,7 @@
 const Redis = require('ioredis');
 require('dotenv').config();
 
-const redisUrl = process.env.REDIS_URL || 'redis://localhost:6379';
+const redisUrl = process.env.REDIS_URL;
 
 const commandClient = new Redis(redisUrl);
 const pubsubClient = new Redis(redisUrl);

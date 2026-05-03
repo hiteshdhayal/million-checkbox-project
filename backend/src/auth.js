@@ -20,10 +20,8 @@ function setSignedCookie(res, name, value, secret) {
   const signature = generateSignature(value, secret);
   const signedValue = `${value}.${signature}`;
   res.cookie(name, signedValue, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 24 * 60 * 60 * 1000,
-    sameSite: 'lax'
+    httpOnly: true, secure: true, sameSite: 'none',
+    maxAge: 24 * 60 * 60 * 1000
   });
 }
 

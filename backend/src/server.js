@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require("cors");
 const http = require('http');
 const { WebSocketServer } = require('ws');
 const path = require('path');
@@ -16,6 +17,7 @@ const wss = new WebSocketServer({ server });
 
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
 app.use(sessionMiddleware);
 
